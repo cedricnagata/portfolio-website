@@ -11,7 +11,7 @@ function Projects() {
         "derm_dx",
         "skin_lesion_classifier",
         "anger-translator",
-        "Portfolio-Website",
+        "portfolio-website",
         "kalah-ai-player",
         "UW-Campus-Routefinder",
         "Multithreaded-Web-Based-Search-Engine",
@@ -40,7 +40,7 @@ function Projects() {
         };
 
         fetchProjects();
-    }, []);
+    });
 
 
     return (
