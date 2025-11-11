@@ -1,0 +1,14 @@
+.navbar-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;  /* This ensures the z-index applies */
+    z-index: 3;
+}
+  
+.navbar-brand {
+    font-size: 2rem !important; /* Adjust size as necessary */
+    position: relative;  /* This ensures the z-index applies */
+    z-index: 3;
+}
