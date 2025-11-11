@@ -1,2 +1,3 @@
-# Portfolio-Website
-Cedric Nagata Portfolio Website
+# My Portfolio Website
+
+Visit my portfolio: https://www.cedricnagata.com
