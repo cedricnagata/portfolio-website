@@ -6,31 +6,13 @@ function Projects() {
     const [projects, setProjects] = useState([]);
     const [error, setError] = useState(null);
 
-    const order = [
-        "little-chef",
-        "derm_dx",
-        "skin_lesion_classifier",
-        "anger-translator",
-        "portfolio-website",
-        "kalah-ai-player",
-        "UW-Campus-Routefinder",
-        "Multithreaded-Web-Based-Search-Engine",
-        "Flight-Service-App",
-    ];
-
-
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('https://api.github.com/users/cedricnagata/repos');
-                let fetchedProjects = response.data;
-
-                // Sort the projects based on the defined order
-                fetchedProjects = fetchedProjects.filter((project) => {
-                    return order.includes(project.name)
-                }).sort((a, b) => {
-                    return order.indexOf(a.name) - order.indexOf(b.name)
-                });
+                const response = await axios.get('https://api.github.com/users/cedricnagata/repos?per_page=100');
+                const fetchedProjects = response.data
+                    .filter((project) => !project.fork)
+                    .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
 
                 setProjects(fetchedProjects);
             } catch (error) {
@@ -40,7 +22,7 @@ function Projects() {
         };
 
         fetchProjects();
-    });
+    }, []);
 
 
     return (
