@@ -1,3 +1,15 @@
+.project-group {
+    margin-bottom: 10px;
+}
+
+.project-group-title {
+    font-size: 1.6em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 /* Container for all projects */
 .projects-grid {
     display: grid;
