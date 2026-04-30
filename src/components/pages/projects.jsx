@@ -5,10 +5,9 @@ import './projects.css';
 const GROUPS = [
     { title: 'LittleChef', repos: ['little-chef'] },
     { title: 'BigBro', repos: ['bigbro', 'bigbro-kit', 'bigbro-test'] },
-    { title: 'Derm DX', repos: ['derm_dx', 'skin_lesion_classifier'] },
+    { title: 'DermDX', repos: ['derm_dx', 'skin_lesion_classifier'] },
+    { title: 'Misc', repos: ['advent-of-code', 'portfolio-website'] },
 ];
-
-const INDIVIDUALS = ['advent-of-code', 'portfolio-website'];
 
 function ProjectCard({ project }) {
     return (
@@ -61,12 +60,6 @@ function Projects() {
                     </div>
                 );
             })}
-
-            <div className="projects-grid">
-                {INDIVIDUALS.map((name) => repoMap[name]).filter(Boolean).map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                ))}
-            </div>
         </div>
     );
 }
