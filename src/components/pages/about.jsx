@@ -4,42 +4,55 @@ function About() {
     return (
         <div className="container">
             <h1>About Me</h1>
-            <div class="intro">
-                <p><strong>Hello! I'm Cedric Nagata, </strong> 
-                    a full-stack software engineer with a Computer Science degree from the University of Washington. 
-                    I specialize in designing and building impactful applications that blend intuitive user experiences with robust, 
-                    scalable backend systems. My work spans AI integration, cloud-native deployment, and modern web and mobile development.</p>
+            <div className="intro">
+                <p><strong>Hello! I'm Cedric Nagata,</strong> a software engineer with experience building
+                    Agentic AI solutions, LLM integrations, RAG services, and full-stack cloud-native web
+                    applications. I hold a B.S. in Computer Science from the University of Washington.</p>
             </div>
 
-            <div class="experience">
-                <h3>Experience:</h3>
-                <p>At <strong>Gideon Taylor</strong>, I develop REST APIs for Retrieval-Augmented Generation (RAG) LLM services, 
-                    manage vector database knowledge with Qdrant, and build production-ready full-stack applications
-                    with React, Node.js, and Python. I leverage Docker and Kubernetes for container orchestration 
-                    and deploy to Oracle Cloud, ensuring efficient, reliable, and maintainable solutions. 
-                    My role blends backend engineering, frontend development, and DevOps practices to deliver high-quality, user-focused products.</p>
+            <div className="experience">
+                <h3>Experience</h3>
+
+                <p>
+                    <strong>Software Engineer II — Gideon Taylor</strong> <em>(Oct 2024 – Present)</em>
+                </p>
+                <ul>
+                    <li>Developing Agentic AI solutions and LLM tool integrations in Python for the Ida Enterprise AI Agent</li>
+                    <li>Developing REST APIs for a Retrieval-Augmented Generation (RAG) LLM service</li>
+                    <li>Developing a RAG pipeline and vector storage solution for LLM knowledge</li>
+                    <li>Managing Docker &amp; Kubernetes containers for cloud deployment through Oracle Cloud Infrastructure (OCI)</li>
+                    <li>Full-stack engineer for a cloud-native web app for GT eForms for Cloud with React and Node.js</li>
+                </ul>
+
+                <p>
+                    <strong>Software Engineering Intern — Tyler Technologies</strong> <em>(Jun 2022 – Sep 2023)</em>
+                </p>
+                <ul>
+                    <li>Developed REST APIs with Python and Django for a cloud-native web application</li>
+                    <li>Used Form.io for UI, ElasticSearch for storage and querying, and Azure for cloud hosting</li>
+                    <li>Optimized development and deployment workflows with Docker to containerize connected servers</li>
+                </ul>
             </div>
 
-            <div class="current-projects">
-                <h3>Current Projects:</h3>
-                <p>Outside of my professional work, I’ve created innovative projects including <strong>LittleChef</strong>, 
-                    an AI-powered cooking assistant with a “swipe-to-match” recipe finder and immersive cooking mode, 
-                    and <strong>DERM DX</strong>, a cross-platform mobile app that uses computer vision to classify skin lesions from 
-                    over 44,000 training images. Each project showcases my ability to merge AI capabilities, intuitive 
-                    interfaces, and solid backend systems into practical, impactful tools.</p>
+            <div className="current-projects">
+                <h3>Projects</h3>
+                <p>Outside of work, I build projects that push the boundaries of AI and mobile development:</p>
+                <ul>
+                    <li><strong>LittleChef</strong> — An AI-powered, hands-free cooking assistant with recipe generation from text, websites, and images. Features a custom AI agent for timers, ingredient substitutions, and step-by-step guidance, plus full on-device inference support.</li>
+                    <li><strong>BigBro</strong> — A macOS app that lets nearby iPhones offload model inference to Mac compute power via Ollama over the local network, along with a BigBroKit Swift framework for easy integration.</li>
+                    <li><strong>DERM DX</strong> — A mobile app using a CNN model trained on 44,033 images to classify skin lesions, backed by a Python/Flask REST API for image classification.</li>
+                </ul>
             </div>
 
-            <div class="aspirations">
-                <h3>Career Aspirations:</h3>
-                <p>I aim to join a forward-thinking software team where I can apply my technical expertise, 
-                    creativity, and collaborative mindset to build products that solve real-world problems. 
-                    I’m passionate about clean architecture, scalable systems, and using technology to make a meaningful difference.</p>
+            <div className="aspirations">
+                <h3>Skills</h3>
+                <p>Python, TypeScript, JavaScript, Java, SQL, Node.js, React.js, Docker, Kubernetes, Redis, Git, AWS, OCI, Azure, PostgreSQL, REST APIs</p>
             </div>
 
-            <div class="invitation">
-                <p>I invite you to browse through my portfolio to learn more about my adventures in computer science. 
-                    Your thoughts, opportunities, and collaborative ideas are warmly welcomed as I am always eager for engaging projects 
-                    and enriching interactions in the tech landscape.</p>
+            <div className="invitation">
+                <p>I invite you to browse my portfolio and explore my projects on GitHub. Opportunities and
+                    collaborative ideas are always welcome — I'm eager to work on meaningful problems in software
+                    and AI.</p>
             </div>
         </div>
     );
