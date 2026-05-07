@@ -18,6 +18,13 @@
     overflow: hidden; /* Hide overflow */
 }
 
+/* Make all slick wrapper divs fill the container */
+.slideshow-container .slick-slider,
+.slideshow-container .slick-list,
+.slideshow-container .slick-track {
+    height: 100%;
+}
+
 .slide {
     width: 100%;
     height: 100%;
@@ -28,7 +35,7 @@
 .slide-image {
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .slide-overlay {
