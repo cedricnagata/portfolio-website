@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import './projects.css';
 
+const KNOWN_REPOS = new Set([
+    'little-chef',
+    'bigbro', 'bigbro-kit', 'bigbro-test',
+    'derm_dx', 'skin_lesion_classifier',
+]);
+
 const PROJECTS = [
     {
         id: 'littlechef',
@@ -88,12 +94,28 @@ const PROJECTS = [
             'A mobile app that uses machine learning and computer vision to help patients identify skin conditions. A CNN model trained on over 44,000 labeled images classifies skin lesions, backed by a Python/Flask REST API that handles image inference.',
         links: [
             {
-                label: 'GitHub',
+                label: 'derm_dx',
                 href: 'https://github.com/cedricnagata/derm_dx',
                 icon: 'github',
                 variant: 'ghost',
             },
+            {
+                label: 'skin_lesion_classifier',
+                href: 'https://github.com/cedricnagata/skin_lesion_classifier',
+                icon: 'github',
+                variant: 'ghost',
+            },
         ],
+        setup: null,
+    },
+    {
+        id: 'other',
+        label: 'Other',
+        tag: null,
+        tagColor: '#aaaaaa',
+        type: 'list',
+        description: null,
+        links: [],
         setup: null,
     },
 ];
@@ -128,6 +150,7 @@ function Projects() {
 
     const [active, setActive] = useState(getHashId);
     const [resolvedHrefs, setResolvedHrefs] = useState({});
+    const [otherRepos, setOtherRepos] = useState([]);
 
     useEffect(() => {
         const onHashChange = () => setActive(getHashId());
@@ -161,6 +184,18 @@ function Projects() {
         return () => { cancelled = true; };
     }, []);
 
+    useEffect(() => {
+        fetch('https://api.github.com/users/cedricnagata/repos?per_page=100')
+            .then((r) => r.json())
+            .then((data) => {
+                const repos = data
+                    .filter((r) => !r.fork && !KNOWN_REPOS.has(r.name))
+                    .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+                setOtherRepos(repos);
+            })
+            .catch(() => {});
+    }, []);
+
     const selectTab = (id) => {
         window.location.hash = id;
         setActive(id);
@@ -189,56 +224,91 @@ function Projects() {
             </div>
 
             <div className="tab-panel" key={active}>
-                <div className="panel-header">
-                    <div className="panel-title-row">
-                        <h2 className="panel-title">{project.label}</h2>
-                        <span className="panel-tag" style={{ color: project.tagColor, borderColor: project.tagColor }}>
-                            {project.tag}
-                        </span>
-                    </div>
-                    <p className="panel-description">{project.description}</p>
-                    <div className="panel-links">
-                        {project.links.map((link) => {
-                            const Icon = ICONS[link.icon];
-                            const href = link.href ?? resolvedHrefs[`${project.id}::${link.label}`];
-                            if (!href) return null;
-                            return (
-                                <a
-                                    key={link.label}
-                                    href={href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`panel-btn panel-btn--${link.variant}`}
-                                    style={link.variant === 'primary' ? { '--btn-accent': project.tagColor } : {}}
-                                >
-                                    {Icon && <Icon />}
-                                    {link.label}
-                                </a>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {project.setup && (
-                    <div className="setup-section">
-                        <h3 className="setup-title">{project.setup.title}</h3>
-                        <div className="setup-steps">
-                            {project.setup.steps.map((s) => (
-                                <div className="setup-step" key={s.step}>
-                                    <span className="step-number">{s.step}</span>
-                                    <div className="step-content">
-                                        <strong className="step-title">{s.title}</strong>
-                                        <p className="step-body">{s.body}</p>
-                                        {s.link && (
-                                            <a href={s.link.href} target="_blank" rel="noopener noreferrer" className="step-link">
-                                                {s.link.label} →
-                                            </a>
+                {project.type === 'list' ? (
+                    <div className="other-grid-panel">
+                        {otherRepos.length === 0 ? (
+                            <p className="other-empty">No additional repositories found.</p>
+                        ) : (
+                            <div className="other-grid">
+                                {otherRepos.map((repo) => (
+                                    <a
+                                        key={repo.id}
+                                        href={repo.html_url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="other-card"
+                                    >
+                                        <div className="other-card-top">
+                                            <GitHubIcon />
+                                            <span className="other-card-name">{repo.name}</span>
+                                        </div>
+                                        {repo.description && (
+                                            <p className="other-card-desc">{repo.description}</p>
                                         )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                                        {repo.language && (
+                                            <span className="other-card-lang">{repo.language}</span>
+                                        )}
+                                    </a>
+                                ))}
+                            </div>
+                        )}
                     </div>
+                ) : (
+                    <>
+                        <div className="panel-header">
+                            <div className="panel-title-row">
+                                <h2 className="panel-title">{project.label}</h2>
+                                {project.tag && (
+                                    <span className="panel-tag" style={{ color: project.tagColor, borderColor: project.tagColor }}>
+                                        {project.tag}
+                                    </span>
+                                )}
+                            </div>
+                            <p className="panel-description">{project.description}</p>
+                            <div className="panel-links">
+                                {project.links.map((link) => {
+                                    const Icon = ICONS[link.icon];
+                                    const href = link.href ?? resolvedHrefs[`${project.id}::${link.label}`];
+                                    if (!href) return null;
+                                    return (
+                                        <a
+                                            key={link.label}
+                                            href={href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`panel-btn panel-btn--${link.variant}`}
+                                            style={link.variant === 'primary' ? { '--btn-accent': project.tagColor } : {}}
+                                        >
+                                            {Icon && <Icon />}
+                                            {link.label}
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {project.setup && (
+                            <div className="setup-section">
+                                <h3 className="setup-title">{project.setup.title}</h3>
+                                <div className="setup-steps">
+                                    {project.setup.steps.map((s) => (
+                                        <div className="setup-step" key={s.step}>
+                                            <span className="step-number">{s.step}</span>
+                                            <div className="step-content">
+                                                <strong className="step-title">{s.title}</strong>
+                                                <p className="step-body">{s.body}</p>
+                                                {s.link && (
+                                                    <a href={s.link.href} target="_blank" rel="noopener noreferrer" className="step-link">
+                                                        {s.link.label} →
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>
