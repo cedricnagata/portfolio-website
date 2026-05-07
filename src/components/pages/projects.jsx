@@ -223,6 +223,16 @@ function Projects() {
                 ))}
             </div>
 
+            <select
+                className="tabs-dropdown"
+                value={active}
+                onChange={(e) => selectTab(e.target.value)}
+            >
+                {PROJECTS.map((p) => (
+                    <option key={p.id} value={p.id}>{p.label}</option>
+                ))}
+            </select>
+
             <div className="tab-panel" key={active}>
                 {project.type === 'list' ? (
                     <div className="other-grid-panel">
