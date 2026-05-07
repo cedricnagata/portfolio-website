@@ -26,14 +26,26 @@ const BackgroundSlideshow = () => {
 
   return (
     <div className="slideshow-container">
-      <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index} className="slide">
-            <img src={image} alt="" className="slide-image" />
-            {!isHomePage && <div className="slide-overlay"></div>}
-          </div>
-        ))}
-      </Slider>
+      {/* Desktop: photo slideshow */}
+      <div className="slideshow-slides">
+        <Slider {...settings}>
+          {images.map((image, index) => (
+            <div key={index} className="slide">
+              <img src={image} alt="" className="slide-image" />
+              {!isHomePage && <div className="slide-overlay"></div>}
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      {/* Mobile: animated gradient background */}
+      <div className="mobile-bg">
+        <div className="mobile-bg__orb mobile-bg__orb--1" />
+        <div className="mobile-bg__orb mobile-bg__orb--2" />
+        <div className="mobile-bg__orb mobile-bg__orb--3" />
+        <div className="mobile-bg__orb mobile-bg__orb--4" />
+        {!isHomePage && <div className="mobile-bg__overlay" />}
+      </div>
     </div>
   );
 };

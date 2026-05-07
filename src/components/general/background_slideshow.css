@@ -1,27 +1,29 @@
+/* ── Ken Burns animation for desktop slides ─────────────────── */
 @keyframes kenburns {
-    0% {
-        transform: scale(1) translate(0);
-    }
-
-    100% {
-        transform: scale(1.1) translate(-2.5%, -5%);
-    }
+    0%   { transform: scale(1) translate(0); }
+    100% { transform: scale(1.1) translate(-2.5%, -5%); }
 }
 
+/* ── Shared container ────────────────────────────────────────── */
 .slideshow-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure slideshow is behind content */
-    overflow: hidden; /* Hide overflow */
+    z-index: 1;
+    overflow: hidden;
 }
 
-/* Make all slick wrapper divs fill the container */
-.slideshow-container .slick-slider,
-.slideshow-container .slick-list,
-.slideshow-container .slick-track {
+/* ── Desktop: photo slideshow ────────────────────────────────── */
+.slideshow-slides {
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-slides .slick-slider,
+.slideshow-slides .slick-list,
+.slideshow-slides .slick-track {
     height: 100%;
 }
 
@@ -44,5 +46,100 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Adjust transparency as needed */
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Mobile: animated aurora background ──────────────────────── */
+.mobile-bg {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: #080b18;
+    overflow: hidden;
+}
+
+.mobile-bg__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+}
+
+.mobile-bg__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+}
+
+.mobile-bg__orb--1 {
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, #3b0f6e 0%, #6d28d9 60%, transparent 100%);
+    top: -15%;
+    left: -20%;
+    animation: orb1 14s ease-in-out infinite alternate;
+}
+
+.mobile-bg__orb--2 {
+    width: 65vw;
+    height: 65vw;
+    background: radial-gradient(circle, #0e4d6e 0%, #0891b2 60%, transparent 100%);
+    top: 30%;
+    right: -25%;
+    animation: orb2 18s ease-in-out infinite alternate;
+}
+
+.mobile-bg__orb--3 {
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, #1a3a5c 0%, #1d4ed8 55%, transparent 100%);
+    bottom: 5%;
+    left: -10%;
+    animation: orb3 12s ease-in-out infinite alternate;
+}
+
+.mobile-bg__orb--4 {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, #4a1060 0%, #9333ea 50%, transparent 100%);
+    bottom: 20%;
+    right: 5%;
+    animation: orb4 16s ease-in-out infinite alternate;
+}
+
+@keyframes orb1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(12vw, 18vw) scale(1.15); }
+    100% { transform: translate(5vw, 8vw) scale(0.9); }
+}
+
+@keyframes orb2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-15vw, 10vw) scale(1.2); }
+    100% { transform: translate(-8vw, -12vw) scale(0.95); }
+}
+
+@keyframes orb3 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(10vw, -15vw) scale(1.1); }
+    100% { transform: translate(20vw, -5vw) scale(1.25); }
+}
+
+@keyframes orb4 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-12vw, -10vw) scale(0.85); }
+    100% { transform: translate(-5vw, 15vw) scale(1.15); }
+}
+
+/* ── Responsive: swap slideshow ↔ aurora ─────────────────────── */
+@media (max-width: 768px) {
+    .slideshow-slides {
+        display: none;
+    }
+
+    .mobile-bg {
+        display: block;
+    }
 }
