@@ -23,11 +23,18 @@
     margin-bottom: 2rem;
 }
 
-.tabs-dropdown {
+.tabs-dropdown-wrapper {
     display: none;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.tabs-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 10px 14px;
-    margin-bottom: 1.5rem;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
@@ -35,23 +42,65 @@
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
+    text-align: left;
 }
 
-.tabs-dropdown option {
-    background: #1a1a2e;
+.tabs-dropdown-chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.tabs-dropdown-chevron--open {
+    transform: rotate(180deg);
+}
+
+.tabs-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #1e1e2e;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.tabs-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+}
+
+.tabs-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.07);
     color: #ffffff;
+}
+
+.tabs-dropdown-item--active {
+    color: #ffffff;
+}
+
+.tabs-dropdown-check {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
 }
 
 @media (max-width: 600px) {
     .tabs-bar {
         display: none;
     }
-    .tabs-dropdown {
+    .tabs-dropdown-wrapper {
         display: block;
     }
 }
