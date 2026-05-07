@@ -18,7 +18,13 @@ const PROJECTS = [
             },
             {
                 label: 'Try now on TestFlight!',
-                href: 'https://testflight.apple.com/join/PFrfk3WY',
+                href: null,
+                hrefSource: {
+                    type: 'githubReadme',
+                    owner: 'cedricnagata',
+                    repo: 'little-chef',
+                    pattern: /https:\/\/testflight\.apple\.com\/join\/[A-Za-z0-9]+/,
+                },
                 icon: 'apple',
                 variant: 'primary',
             },
@@ -40,8 +46,8 @@ const PROJECTS = [
                 variant: 'ghost',
             },
             {
-                label: 'Download v1.0.0',
-                href: 'https://github.com/cedricnagata/bigbro/releases/download/v1.0.0/bigbro-1.0.0.dmg',
+                label: 'Latest Release',
+                href: 'https://github.com/cedricnagata/bigbro/releases/latest',
                 icon: 'download',
                 variant: 'primary',
             },
@@ -121,11 +127,38 @@ function Projects() {
     };
 
     const [active, setActive] = useState(getHashId);
+    const [resolvedHrefs, setResolvedHrefs] = useState({});
 
     useEffect(() => {
         const onHashChange = () => setActive(getHashId());
         window.addEventListener('hashchange', onHashChange);
         return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
+
+    useEffect(() => {
+        let cancelled = false;
+        const resolveLink = async (projectId, link) => {
+            const { owner, repo, pattern } = link.hrefSource;
+            const key = `${projectId}::${link.label}`;
+            for (const branch of ['main', 'master']) {
+                try {
+                    const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/README.md`);
+                    if (!res.ok) continue;
+                    const text = await res.text();
+                    const match = text.match(pattern);
+                    if (match && !cancelled) {
+                        setResolvedHrefs((prev) => ({ ...prev, [key]: match[0] }));
+                        return;
+                    }
+                } catch {}
+            }
+        };
+        for (const p of PROJECTS) {
+            for (const link of p.links) {
+                if (link.hrefSource?.type === 'githubReadme') resolveLink(p.id, link);
+            }
+        }
+        return () => { cancelled = true; };
     }, []);
 
     const selectTab = (id) => {
@@ -167,10 +200,12 @@ function Projects() {
                     <div className="panel-links">
                         {project.links.map((link) => {
                             const Icon = ICONS[link.icon];
+                            const href = link.href ?? resolvedHrefs[`${project.id}::${link.label}`];
+                            if (!href) return null;
                             return (
                                 <a
                                     key={link.label}
-                                    href={link.href}
+                                    href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`panel-btn panel-btn--${link.variant}`}
