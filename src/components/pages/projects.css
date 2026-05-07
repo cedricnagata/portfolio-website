@@ -20,6 +20,8 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
     margin-bottom: 2rem;
 }
 
@@ -253,7 +255,7 @@
 
 .other-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
     gap: 1rem;
 }
 
