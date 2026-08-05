@@ -14,13 +14,22 @@ function About() {
                 <h3>Experience</h3>
 
                 <p>
-                    <strong>Software Engineer II — Gideon Taylor</strong> <em>(Oct 2024 – Present)</em>
+                    <strong>Software Engineer — Empowerly</strong> <em>(Jun 2026 – Present)</em>
                 </p>
                 <ul>
-                    <li>Developing Agentic AI solutions and LLM tool integrations in Python for the Ida Enterprise AI Agent</li>
-                    <li>Developing REST APIs for a Retrieval-Augmented Generation (RAG) LLM service</li>
-                    <li>Developing a RAG pipeline and vector storage solution for LLM knowledge</li>
-                    <li>Managing Docker &amp; Kubernetes containers for cloud deployment through Oracle Cloud Infrastructure (OCI)</li>
+                    <li>Full-stack engineer on the Growth team, building with Next.js and NestJS</li>
+                    <li>Building internal tools for marketing insights and A/B testing experimentation</li>
+                    <li>Managing cloud containers and environments for growth infrastructure</li>
+                </ul>
+
+                <p>
+                    <strong>Software Engineer II — Gideon Taylor</strong> <em>(Oct 2024 – May 2026)</em>
+                </p>
+                <ul>
+                    <li>Developed Agentic AI solutions and LLM tool integrations in Python for the Ida Enterprise AI Agent</li>
+                    <li>Developed REST APIs for a Retrieval-Augmented Generation (RAG) LLM service</li>
+                    <li>Developed a RAG pipeline and vector storage solution for LLM knowledge</li>
+                    <li>Managed Docker &amp; Kubernetes containers for cloud deployment through Oracle Cloud Infrastructure (OCI)</li>
                     <li>Full-stack engineer for a cloud-native web app for GT eForms for Cloud with React and Node.js</li>
                 </ul>
 
@@ -38,15 +47,15 @@ function About() {
                 <h3>Projects</h3>
                 <p>Outside of work, I build projects that push the boundaries of AI and mobile development:</p>
                 <ul>
-                    <li><strong>LittleChef</strong> — An AI-powered, hands-free cooking assistant with recipe generation from text, websites, and images. Features a custom AI agent for timers, ingredient substitutions, and step-by-step guidance, plus full on-device inference support.</li>
-                    <li><strong>BigBro</strong> — A macOS app that lets nearby iPhones offload model inference to Mac compute power via Ollama over the local network, along with a BigBroKit Swift framework for easy integration.</li>
+                    <li><strong>LittleChef</strong> — An AI-powered, hands-free cooking assistant with recipe generation from text, websites, and images. Features a custom AI agent for timers, ingredient substitutions, and step-by-step guidance, plus on-device and Mac-offloaded inference.</li>
+                    <li><strong>BigBro</strong> — A macOS terminal daemon that lets nearby iPhones offload model inference to Mac compute power over the local network via in-process MLX, along with a BigBroKit Swift package for easy integration.</li>
                     <li><strong>DERM DX</strong> — A mobile app using a CNN model trained on 44,033 images to classify skin lesions, backed by a Python/Flask REST API for image classification.</li>
                 </ul>
             </div>
 
             <div className="aspirations">
                 <h3>Skills</h3>
-                <p>Python, TypeScript, JavaScript, Java, SQL, Node.js, React.js, Docker, Kubernetes, Redis, Git, AWS, OCI, Azure, PostgreSQL, REST APIs</p>
+                <p>Python, TypeScript, JavaScript, Java, SQL, Node.js, Next.js, NestJS, React.js, Docker, Kubernetes, Redis, Git, AWS, OCI, Azure, PostgreSQL, REST APIs</p>
             </div>
 
             <div className="invitation">
