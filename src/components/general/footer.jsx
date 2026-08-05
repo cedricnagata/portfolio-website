@@ -3,7 +3,7 @@ import './general.css';
 
 const Footer = () => (
   <footer className="text-center mt-4 footer">
-    <p>&copy; 2023 Cedric Nagata</p>
+    <p>&copy; {new Date().getFullYear()} Cedric Nagata</p>
   </footer>
 );
 
