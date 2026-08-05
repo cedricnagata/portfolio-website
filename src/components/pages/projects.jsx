@@ -14,7 +14,7 @@ const PROJECTS = [
         tag: 'iOS App',
         tagColor: '#ff6b35',
         description:
-            'An AI-powered, hands-free cooking assistant and recipe manager. Import recipes from text, URLs, or photos — then cook with a custom AI agent that handles timers, ingredient substitutions, and step-by-step voice guidance. Supports full on-device inference via BigBro.',
+            'An AI-powered, hands-free cooking assistant and recipe manager. Import recipes from text, URLs, or photos, then cook with a custom AI agent that handles timers, ingredient substitutions, and step-by-step voice guidance — hands-free, or gated behind a wake word ("hey little chef") for a busy kitchen. Runs fully on-device with on-device LLMs, or pairs with a Mac running BigBro to offload inference to a larger model with full tool support.',
         links: [
             {
                 label: 'GitHub',
@@ -40,10 +40,10 @@ const PROJECTS = [
     {
         id: 'bigbro',
         label: 'BigBro',
-        tag: 'macOS App',
+        tag: 'macOS CLI',
         tagColor: '#4a9eff',
         description:
-            'A macOS menu bar app that turns your Mac into a local AI inference server for nearby iOS devices. Advertises itself on your local network, accepts pairing requests with per-device approval, and proxies requests to a local Ollama instance — full streaming, tool calling, and image support.',
+            'A macOS terminal daemon that turns your Mac into a local AI inference server for nearby iOS devices. Advertises itself over Bonjour, accepts pairing requests with per-device approval, and runs inference in-process via MLX — gpt-oss, Qwen3, Llama, Gemma, plus Kokoro TTS and Parakeet STT — with full streaming, tool calling, and image support. No Ollama, nothing else to install.',
         links: [
             {
                 label: 'GitHub',
@@ -52,9 +52,9 @@ const PROJECTS = [
                 variant: 'ghost',
             },
             {
-                label: 'Latest Release',
-                href: 'https://github.com/cedricnagata/bigbro/releases/latest',
-                icon: 'download',
+                label: 'BigBroKit (iOS SDK)',
+                href: 'https://github.com/cedricnagata/bigbro-kit',
+                icon: 'github',
                 variant: 'primary',
             },
         ],
@@ -64,23 +64,22 @@ const PROJECTS = [
                 {
                     step: '01',
                     title: 'Requirements',
-                    body: 'macOS 14 Sonoma or later. Install Ollama from ollama.ai and pull at least one model.',
-                    link: { label: 'Get Ollama', href: 'https://ollama.ai' },
+                    body: 'macOS 14 Sonoma or later, Apple Silicon, and Python 3.10+.',
                 },
                 {
                     step: '02',
                     title: 'Install',
-                    body: 'Download the DMG above, open it, and drag BigBro.app into your Applications folder.',
+                    body: 'Install straight from the repository with uv — nothing to clone or build: uv tool install git+https://github.com/cedricnagata/bigbro',
                 },
                 {
                     step: '03',
-                    title: 'Launch',
-                    body: 'Open BigBro — it lives in your menu bar. Click the icon to see paired devices and model status.',
+                    title: 'Run',
+                    body: 'bigbro serve opens the terminal dashboard, listens for connections, and downloads models on first use.',
                 },
                 {
                     step: '04',
                     title: 'Pair',
-                    body: 'Open an iOS app built with BigBroKit on the same Wi-Fi network. Approve the pairing dialog on your Mac — the device is remembered for future sessions.',
+                    body: 'An iOS app built with BigBroKit discovers your Mac via Bonjour and sends a pairing request. Approve it in the dashboard — the device is remembered for future sessions.',
                 },
             ],
         },
