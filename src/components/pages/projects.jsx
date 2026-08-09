@@ -40,10 +40,10 @@ const PROJECTS = [
     {
         id: 'bigbro',
         label: 'BigBro',
-        tag: 'macOS CLI',
+        tag: 'macOS App',
         tagColor: '#4a9eff',
         description:
-            'A macOS terminal daemon that turns your Mac into a local AI inference server for nearby iOS devices. Advertises itself over Bonjour, accepts pairing requests with per-device approval, and runs inference in-process via MLX — gpt-oss, Qwen3, Llama, Gemma, plus Kokoro TTS and Parakeet STT — with full streaming, tool calling, and image support. No Ollama, nothing else to install.',
+            'A macOS app that turns your Mac into a local AI inference server for nearby iOS devices. Advertises itself over Bonjour, accepts pairing requests with per-device approval, and runs inference in-process via MLX — gpt-oss, Qwen3, Llama, Gemma, plus Kokoro TTS and Parakeet STT — with full streaming, tool calling, and image support. A menu-bar app with a live dashboard for models, pairing, and downloads, or install just the CLI for a headless Mac. Signed and notarized. No Ollama, nothing else to install.',
         links: [
             {
                 label: 'GitHub',
@@ -52,10 +52,16 @@ const PROJECTS = [
                 variant: 'ghost',
             },
             {
+                label: 'Download for macOS',
+                href: 'https://github.com/cedricnagata/bigbro/releases/latest',
+                icon: 'download',
+                variant: 'primary',
+            },
+            {
                 label: 'BigBroKit (iOS SDK)',
                 href: 'https://github.com/cedricnagata/bigbro-kit',
                 icon: 'github',
-                variant: 'primary',
+                variant: 'ghost',
             },
             {
                 label: 'BigBroTest (demo app)',
@@ -70,22 +76,22 @@ const PROJECTS = [
                 {
                     step: '01',
                     title: 'Requirements',
-                    body: 'macOS 14 Sonoma or later, Apple Silicon, and Python 3.10+.',
+                    body: 'macOS 14 Sonoma or later, Apple Silicon. Enough RAM for what you run — gpt-oss-20b plus a vision model wants around 16 GB.',
                 },
                 {
                     step: '02',
                     title: 'Install',
-                    body: 'Install straight from the repository with uv — nothing to clone or build: uv tool install git+https://github.com/cedricnagata/bigbro',
+                    body: 'Download BigBro-<version>-arm64.dmg from Releases, open it, and drag BigBro to Applications. No Python, no terminal required.',
                 },
                 {
                     step: '03',
                     title: 'Run',
-                    body: 'bigbro serve opens the terminal dashboard, listens for connections, and downloads models on first use.',
+                    body: 'Launch BigBro and allow Local Network access when macOS asks — that’s what lets nearby iPhones find it. The menu bar shows serving state and downloads models on first use.',
                 },
                 {
                     step: '04',
                     title: 'Pair',
-                    body: 'An iOS app built with BigBroKit discovers your Mac via Bonjour and sends a pairing request. Approve it in the dashboard — the device is remembered for future sessions.',
+                    body: 'An iOS app built with BigBroKit discovers your Mac via Bonjour and sends a pairing request. Approve it from the menu bar — the device is remembered for future sessions.',
                 },
             ],
         },
