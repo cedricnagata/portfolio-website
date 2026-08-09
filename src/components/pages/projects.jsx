@@ -69,12 +69,6 @@ const PROJECTS = [
                 icon: 'github',
                 variant: 'ghost',
             },
-            {
-                label: 'BigBroTest (demo app)',
-                href: 'https://github.com/cedricnagata/bigbro-test',
-                icon: 'github',
-                variant: 'ghost',
-            },
         ],
         setup: {
             title: 'Setup',
